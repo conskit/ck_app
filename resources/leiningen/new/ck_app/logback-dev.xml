@@ -1,0 +1,24 @@
+<configuration scan="true">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %-5p [%c{2}] %m%n</pattern>
+        </encoder>
+    </appender>
+<!--    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>test.log</file>
+        <append>true</append>
+        &lt;!&ndash; encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default &ndash;&gt;
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>-->
+
+    <logger name="org.eclipse.jetty.server" level="warn"/>
+    <logger name="org.eclipse.jetty.util.log" level="warn"/>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <!--<appender-ref ref="FILE" />-->
+    </root>
+</configuration>
