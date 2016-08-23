@@ -42,6 +42,22 @@
                             updated-state (update state 1 #(modify-state % state-modifiers))]
                         (re-frame/dispatch [:update-page updated-state pop-state?])))})))
 
+(defn link-to-page
+      "Generates a progressively enhanced link"
+      ([page-url label]
+        (link-to-page page-url label {} ""))
+      ([page-url label data]
+        (link-to-page page-url label data ""))
+      ([page-url label data class]
+        [:a {:class class
+             :href   page-url
+             :on-click #(do (re-frame/dispatch [:change-page
+                                                (:handler (bidi/match-route @routes page-url))
+                                                data])
+                            (doto %
+                                  (.preventDefault)
+                                  (.stopPropagation)))} label]))
+
 (defn update-browser!
   "Update Browser after navigation"
   [state pop-state?]

@@ -32,9 +32,13 @@
 
 (defn bidify
   [routes]
-  ["" (for [r routes
-            :let [{:keys [id route]} r]]
-        [route id])])
+  (let [not-catch-all? #(not (true? (:route %)))
+        catch-all (remove not-catch-all? routes)
+        filtered-routes (filter not-catch-all? routes)
+        rs (if (not-empty catch-all) (concat filtered-routes catch-all) routes)]
+    ["" (for [r rs
+              :let [{:keys [id route]} r]]
+          [route id])]))
 
 (defcontroller
   main-ctrlr
