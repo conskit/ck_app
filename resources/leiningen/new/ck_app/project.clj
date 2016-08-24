@@ -18,7 +18,7 @@
                  [hiccup "1.0.5"]
                  [ring/ring-defaults "0.2.1"]
                  ;; Conskit
-                 [conskit "0.3.0-SNAPSHOT"]
+                 [conskit "1.0.0-rc1"]
                  [ck.routing "0.1.0-SNAPSHOT" :classifier "bidi"]
                  [ck.migrations "0.1.0-SNAPSHOT" :classifier "flyway"]
                  [ck.server "0.2.0-SNAPSHOT" :classifier "http-kit"]
