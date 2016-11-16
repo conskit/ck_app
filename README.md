@@ -68,7 +68,7 @@ The template comes with support for the [Reloaded Workflow](http://thinkrelevanc
 
 The only time you should need to restart the REPL is if you've added a new dependency to your project.
 
-### Production Packaging - SPA/MPA Hybrid
+### Production Packaging
 
 To package the application for production simply create an uberjar and run it with the config files as arguments as below:
 

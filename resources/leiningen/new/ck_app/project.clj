@@ -19,10 +19,11 @@
                  [ring/ring-defaults "0.2.1"]
                  ;; Conskit
                  [conskit "1.0.0-rc1"]
-                 [ck.routing "0.1.0-SNAPSHOT" :classifier "bidi"]
-                 [ck.migrations "0.1.0-SNAPSHOT" :classifier "flyway"]
-                 [ck.server "0.2.0-SNAPSHOT" :classifier "http-kit"]
-                 [ck.react-server "0.1.0-SNAPSHOT"]
+                 [ck.routing "1.0.0-rc1" :classifier "bidi"]
+                 [ck.migrations "1.0.0-rc1" :classifier "flyway"]
+                 [ck.server "1.0.0" :classifier "http-kit"]
+                 [ck.react-server "1.0.0-rc1"]
+                 [ck.config "0.1.0"]
                  ;; DB
                  [com.h2database/h2 "1.4.192"]
                  [org.flywaydb/flyway-core "4.0.3"]
