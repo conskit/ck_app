@@ -21,7 +21,7 @@
                  [conskit "1.0.0-rc1"]
                  [ck.routing "1.0.0-rc1" :classifier "bidi"]
                  [ck.migrations "1.0.0-rc1" :classifier "flyway"]
-                 [ck.server "1.0.0" :classifier "http-kit"]
+                 [ck.server "1.0.1" :classifier "http-kit"]
                  [ck.react-server "1.0.0-rc1"]
                  [ck.config "0.1.0"]
                  ;; DB
