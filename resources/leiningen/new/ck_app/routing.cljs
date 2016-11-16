@@ -14,10 +14,27 @@
 (defn start-sente! []
   (reset! sente-client (sente/make-channel-socket! "/chsk" {:packer :edn :type :auto})))
 
+(defmulti chsk-msg-handler :id)
+
+(defmethod chsk-msg-handler :chsk/state
+           [{:as _ :keys [?data]}]
+           (let [[_ new-state] ?data]
+                (when (:first-open? new-state)
+                      (re-frame/dispatch [:get-routes]))))
+
+(defmethod chsk-msg-handler :chsk/handshake
+           [{:as ev-msg :keys [?data]}]
+           (let [[?uid ?csrf-token ?handshake-data] ?data]
+                (when config/debug?
+                      (println "Handshake: " ?data))))
+
+(defmethod chsk-msg-handler :default
+           [msg])
+
 (defn init! []
   (do (.addEventListener js/window "popstate" #(re-frame/dispatch [:popstate]))
       (start-sente!)
-      (re-frame/dispatch [:get-routes])))
+      (sente/start-client-chsk-router! (:ch-recv @sente-client) chsk-msg-handler)))
 
 (defn- modify-state
   [state modifiers]
