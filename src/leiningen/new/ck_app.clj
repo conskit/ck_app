@@ -16,6 +16,8 @@
              ["CHANGELOG.md" (render "CHANGELOG.md" data)]
              ["LICENSE" (render "LICENSE" data)]
              ["README.md" (render "README.md" data)]
+             ["Procfile" (render "Procfile" data)]
+             ["Dockerfile" (render "Dockerfile" data)]
              ["dev/clj/user.clj" (render "user.clj" data)]
              ["dev/cljs/{{sanitized}}/dev.cljs" (render "dev.cljs" data)]
              ["dev-resources/bootstrap.cfg" (render "bootstrap.cfg" data)]
