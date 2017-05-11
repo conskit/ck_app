@@ -1,4 +1,4 @@
-(defproject ck_app/lein-template "0.1.6"
+(defproject ck_app/lein-template "0.1.7"
   :description "Leiningen template for Conskit applications"
   :url "https://github.com/conskit/ck_app"
   :license {:name "Apache License, Version 2.0"
