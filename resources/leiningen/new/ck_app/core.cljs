@@ -1,5 +1,6 @@
 (ns {{name}}.core
   (:require [reagent.core :as reagent]
+            [reagent.dom.server :as reagent-server]
             [re-frame.core :as re-frame]
             [devtools.core :as devtools]
             [{{name}}.handlers]
@@ -21,7 +22,7 @@
   [state-edn]
   (let [state (edn/read-string state-edn)]
     (re-frame/dispatch-sync [:initialize-db state])
-    (reagent/render-to-string [views/main-panel])))
+    (reagent-server/render-to-string [views/main-panel])))
 
 (defn mount-root []
   (reagent/render [views/main-panel]
