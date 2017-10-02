@@ -15,5 +15,7 @@ pom.xml.asc
 ## Directory-based project format:
 .idea/
 
+*.db
+
 # IntelliJ
 out/

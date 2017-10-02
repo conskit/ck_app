@@ -4,7 +4,6 @@
             [taoensso.sente :as sente]
             [ajax.core :refer [POST]]
             [bidi.bidi :as bidi]
-            [cljs.reader :as edn]
             [{{name}}.config :as config]))
 
 (def sente-client (atom {}))
@@ -55,7 +54,7 @@
            :format  :raw
            :handler
                     (fn [resp]
-                      (let [state (edn/read-string resp)
+                      (let [state (reader/read-string resp)
                             updated-state (update state 1 #(modify-state % state-modifiers))]
                         (re-frame/dispatch [:update-page updated-state pop-state?])))})))
 
@@ -83,32 +82,32 @@
   (when (not pop-state?)
     (.pushState js/history nil "" (bidi/path-for @routes (first state)))))
 
-(re-frame/register-handler
+(re-frame/reg-event-db
   :get-routes
   (fn [db _]
     (let [{:keys [send-fn]} @sente-client]
       (send-fn [:{{name}}.core/routes {}]
                5000
                (fn [reply]
-                 (reset! routes (reader/read-string reply)))))
+                 (reset! routes (reader/read-string {:readers {'ck/regex re-pattern}} reply)))))
     db))
 
 
-(re-frame/register-handler
+(re-frame/reg-event-db
   :update-page
   [config/standard-middlewares]
   (fn [_ [state pop-state?]]
     (update-browser! state pop-state?)
     state))
 
-(re-frame/register-handler
+(re-frame/reg-event-db
   :change-page
   [config/standard-middlewares]
   (fn [db [page-key data & state-modifiers]]
     (navigate page-key data false state-modifiers)
     db))
 
-(re-frame/register-handler
+(re-frame/reg-event-db
   :popstate
   [config/standard-middlewares]
   (fn [db _]

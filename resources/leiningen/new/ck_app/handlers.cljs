@@ -3,13 +3,13 @@
               [{{name}}.config :as config]
               [{{name}}.routing :as routing]))
 
-(re-frame/register-handler
+(re-frame/reg-event-db
  :initialize-db
  [config/standard-middlewares]
  (fn  [_ [state]]
    state))
 
-(re-frame/register-handler
+(re-frame/reg-event-db
   :change-to-last-name
   [config/standard-middlewares]
   (fn  [db _]

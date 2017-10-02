@@ -5,18 +5,18 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/tools.logging "0.3.1"]
-                 [bidi "1.25.1" :exclusions [ring/ring-core]]
-                 [com.taoensso/sente "1.10.0"]
+                 [bidi "2.1.2" :exclusions [ring/ring-core]]
+                 [com.taoensso/sente "1.11.0" :exclusions [org.clojure/clojure org.clojure/clojurescript]]
                  ;; client
-                 [org.clojure/clojurescript "1.9.89"]
-                 [reagent "0.5.1"]
-                 [re-frame "0.7.0"]
-                 [binaryage/devtools "0.6.1"]
+                 [org.clojure/clojurescript "1.9.908"]
+                 [reagent "0.7.0"]
+                 [re-frame "0.10.1"]
+                 [binaryage/devtools "0.9.4"]
                  [cljs-ajax "0.5.8"]
                  ;; Server
-                 [http-kit "2.1.18"]
+                 [http-kit "2.2.0"]
                  [hiccup "1.0.5"]
-                 [ring/ring-defaults "0.2.1"]
+                 [ring/ring-defaults "0.3.1"]
                  ;; Conskit
                  [conskit "1.0.0-rc1"]
                  [ck.routing "1.0.0-rc1" :classifier "bidi"]
@@ -29,20 +29,16 @@
                  [org.flywaydb/flyway-core "4.0.3"]
                  [com.layerware/hugsql "0.4.7"]]
 
-  :plugins [[lein-cljsbuild "1.1.3"]]
+  :plugins [[lein-cljsbuild "1.1.7"]]
 
   :source-paths ["src/clj"]
 
-  ;:repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-
-  ;:figwheel {:hawk-options {:watcher :polling}}
-
   :profiles {:dev     {:source-paths ["dev/clj"]
                        :dependencies [[org.clojure/tools.namespace "0.2.11"]
-                                      [figwheel "0.5.4-7"]
-                                      [figwheel-sidecar "0.5.4-7" :exclusions [ring/ring-core]]
+                                      [figwheel "0.5.13"]
+                                      [figwheel-sidecar "0.5.13" :exclusions [ring/ring-core]]
                                       [com.cemerick/piggieback "0.2.1"]]
-                       :plugins      [[lein-figwheel "0.5.4-7"]]
+                       :plugins      [[lein-figwheel "0.5.13"]]
                        :cljsbuild    {:builds
                                       {:dev {:source-paths ["src/cljs" "dev/cljs"]
                                              :figwheel     {:on-jsload "{{name}}.core/mount-root"}

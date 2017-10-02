@@ -13,12 +13,11 @@
 
 (defn dev-setup []
   (when config/debug?
-    (println "dev mode")
     (devtools/install!)))
 
 (defn ^:export render-to-string
   "Takes an app state as EDN and returns the HTML for that state.
-  It can be invoked from JS as `hrubix.core.render_to_string(edn)`."
+  It can be invoked from JS as `{{name}}.core.render_to_string(edn)`."
   [state-edn]
   (let [state (edn/read-string state-edn)]
     (re-frame/dispatch-sync [:initialize-db state])
@@ -34,6 +33,6 @@
                    .-textContent
                    edn/read-string)]
     (routing/init!)
-    (re-frame/dispatch-sync [:initialize-db state])
     (dev-setup)
+    (re-frame/dispatch-sync [:initialize-db state])
     (mount-root)))

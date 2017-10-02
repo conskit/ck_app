@@ -9,7 +9,8 @@
             [hugsql.core :as hug]
             [hiccup.page :as h]
             [ring.util.response :as r]
-            [ck.react-server :as ckrs]))
+            [ck.react-server :as ckrs])
+  (:import (java.util.regex Pattern)))
 
 (defn template
   [rendered-html meta state]
@@ -25,9 +26,9 @@
 
 (defn map-of-db-bindings
   "Creates a binding map from hugsql db fns"
-  [file conn]
+  [file & [conn]]
   (->> (hug/map-of-db-fns file)
-       (map (fn [[k v]] [k (partial (:fn v) conn)]))
+       (map (fn [[k v]] [k (if conn (partial (:fn v) conn) (partial (:fn v)))]))
        (into {})))
 
 (defn bidify
@@ -38,7 +39,9 @@
         rs (if (not-empty catch-all) (concat filtered-routes catch-all) routes)]
     ["" (for [r rs
               :let [{:keys [id route]} r]]
-          [route id])]))
+          (if (= (type route) Pattern)
+            [(symbol "#ck/regex") (str route) id]
+            [route id]))]))
 
 (defcontroller
   main-ctrlr
