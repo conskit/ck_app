@@ -85,6 +85,6 @@ This will start the application in production mode which provides serverside ren
 
 ## License
 
-Copyright © 2016 Jason Murphy
+Copyright © 2018 Jason Murphy
 
 Distributed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
